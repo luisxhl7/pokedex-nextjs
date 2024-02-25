@@ -1,9 +1,3 @@
-import React from 'react'
+const { default: PokemonsPage } = require("@/app/page");
 
-const PokedexPage = () => {
-  return (
-    <div>PokedexPage</div>
-  )
-}
-
-export default PokedexPage
+export default PokemonsPage
