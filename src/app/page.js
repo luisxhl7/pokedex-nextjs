@@ -8,12 +8,14 @@ import { CardPokemon } from "@/components/molecules/card-pokemon";
 import { useForm, usePageNavigation } from "@/hooks";
 import images from "@/assets";
 import "./PokemonsPage.scss";
+import { useRouter } from "next/navigation";
 
 const formData = {
   pokemon: "",
 };
 
-const PokemonsPage = ({ params }) => {
+const PokemonsPage = ({params}) => {
+  const navigate = useRouter()
   const { pokemon, onInputChange } = useForm(formData);
   const [successSearch, setSuccessSearch] = useState(true);
   const { numberPage, totalPage, setTotalPage, handleSelectPage, handleBackPage, handleNextPage } = usePageNavigation(params.page)
@@ -54,10 +56,9 @@ const PokemonsPage = ({ params }) => {
     
     try {
       if (search.length >= 1 ) {
+        navigate.push(`/?q=${ pokemon.toLowerCase().trim() }`)
         const result = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemon}`)
-        console.log(result);
         setPokemons([result?.data])
-        console.log(pokemons);
         setSuccessSearch(true)
       }else{
         getPokemons()
