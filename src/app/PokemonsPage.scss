@@ -1,0 +1,85 @@
+@import '../style/mixins.scss';
+@import '../style/variables.scss';
+
+.PokemonsPage{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+    &__input{
+        border: none;
+        width: 200px;
+        @include FromMin($large) {
+            width: 300px;
+        }
+    }
+    
+    &__content-search{
+        padding: 10px 10px;
+        border-radius: 15px;
+        margin: 15px 0px 30px;
+        background-color: #ffffff;
+        display: flex;
+        &__icon-search{
+            color: #000000;
+            margin: 0px 10px 0px 0px;
+        }
+    }
+
+    &__content{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &__content-buttons{
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        flex-wrap: wrap;
+        padding: 20px 20px 20px;
+        & button{
+            width: 30px;
+            margin: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        & .--actived{
+            background-color: #bd1212;
+        }
+    }
+
+    &__button-arrow{
+        background-color: transparent;
+        color: #ffffff;
+        width: 30px !important;
+    }
+
+    &__not-result{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 30px;
+        & h1{
+            text-align: center;
+        }
+        & img{
+            width: 300px;
+            @include FromMin($large) {
+                width: 500px;
+            }
+        }
+    }
+
+}
+input:-internal-autofill-selected {
+    appearance: menulist-button;
+    background-image: none !important;
+    background-color: red !important;
+    color: fieldtext !important;
+}
