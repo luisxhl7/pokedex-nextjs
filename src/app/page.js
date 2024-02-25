@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
 import axios from "axios";
 import { ArrowBackIos, ArrowForwardIos, Search } from "@mui/icons-material";
 import { CardPokemon } from "@/components/molecules/card-pokemon";
@@ -15,13 +14,11 @@ const formData = {
 };
 
 const PokemonsPage = ({ params }) => {
-  const router = useRouter();
   const { pokemon, onInputChange } = useForm(formData);
   const [successSearch, setSuccessSearch] = useState(true);
-  const { totalPage, setTotalPage, handleSelectPage, handleBackPage, handleNextPage } = usePageNavigation(params.page)
+  const { numberPage, totalPage, setTotalPage, handleSelectPage, handleBackPage, handleNextPage } = usePageNavigation(params.page)
   const [pokemons, setPokemons] = useState();
-  const [numberPage, setNumberPage] = useState(params.page);
-
+  
   useEffect(() => {
     getPokemons(params.page);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -38,10 +35,13 @@ const PokemonsPage = ({ params }) => {
         `https://pokeapi.co/api/v2/pokemon?limit=100&offset=${offset}`
       );
 
-      const pages = Math.round(result?.data?.count / 100);
+      const totalPages = Math.round(result?.data?.count / 100);
+      
+      //convierte el numero total de paginas en un array con con ese total de posiciones 
       setTotalPage(
-        Array.from(Array.from({ length: pages }, (_, index) => index + 1))
+        Array.from(Array.from({ length: totalPages }, (_, index) => index + 1))
       );
+
       setPokemons(result?.data?.results);
     } catch (error) {
       console.log(error);
