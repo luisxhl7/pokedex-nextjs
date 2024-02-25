@@ -5,9 +5,9 @@ import Image from "next/image";
 import axios from "axios";
 import { ArrowBackIos, ArrowForwardIos, Search } from "@mui/icons-material";
 import { CardPokemon } from "@/components/molecules/card-pokemon";
+import { useForm, usePageNavigation } from "@/hooks";
 import images from "@/assets";
 import "./PokemonsPage.scss";
-import { useForm, usePageNavigation } from "@/hooks";
 
 const formData = {
   pokemon: "",
@@ -48,9 +48,30 @@ const PokemonsPage = ({ params }) => {
     }
   };
 
+  const handleSearchPokemon = async(event) => {
+    event.preventDefault()
+    const search = pokemon.replace(/\s/g, '')
+    
+    try {
+      if (search.length >= 1 ) {
+        const result = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemon}`)
+        console.log(result);
+        setPokemons([result?.data])
+        console.log(pokemons);
+        setSuccessSearch(true)
+      }else{
+        getPokemons()
+      }
+      
+    } catch (error) {
+      setSuccessSearch(false)
+    }
+
+  }
+
   return (
     <section className="PokemonsPage">
-      <form autoComplete="off">
+      <form onSubmit={handleSearchPokemon} autoComplete="off">
         <div className="PokemonsPage__content-search">
           <Search className="PokemonsPage__content-search__icon-search" />
           <input
@@ -80,8 +101,8 @@ const PokemonsPage = ({ params }) => {
             <Image
               src={images.pikaTriste}
               alt="Pokeball"
-              width={40}
-              height={40}
+              width='auto'
+              height='auto'
             />
           </div>
         )}
@@ -92,6 +113,7 @@ const PokemonsPage = ({ params }) => {
           <button
             onClick={handleBackPage}
             className="PokemonsPage__button-arrow"
+            title="Anterior"
           >
             <ArrowBackIos />
           </button>
@@ -107,6 +129,7 @@ const PokemonsPage = ({ params }) => {
             </button>
           ))}
           <button
+            title="Siguiente"
             onClick={handleNextPage}
             className="PokemonsPage__button-arrow"
           >

@@ -28,7 +28,7 @@ export const CardPokemon = ({ name, url, id }) => {
   useEffect(() => {
     getPokemon();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [name]);
 
   return (
     <div className="cardPokemon">
@@ -38,40 +38,38 @@ export const CardPokemon = ({ name, url, id }) => {
           <br />
           {isLoad ? "???????" : pokemon?.name}
         </h2>
-        <figure>
-          {isLoad ? (
-            <Image
-              src={images.pokeball}
-              alt="Pokeball"
-              width={150}
-              height={150}
-              priority
-              className={`cardPokemon__pokeLoad ${
-                JSON.parse(localStorage.getItem("viewPokemons"))
-                  ? "--view-pokemons"
-                  : ""
-              }`}
-            />
-          ) : (
-            <Image
-              src={
-                pokemon?.sprites?.other?.dream_world?.front_default
-                  ? pokemon?.sprites?.other?.dream_world?.front_default
-                  : incognito
-              }
-              alt={pokemon?.name}
-              title={pokemon?.name}
-              width={150}
-              height={150}
-              loading="lazy"
-              className={`cardPokemon__pokemon ${
-                JSON.parse(localStorage.getItem("viewPokemons"))
-                  ? "--view-pokemons"
-                  : ""
-              }`}
-            />
-          )}
-        </figure>
+        {isLoad ? (
+          <Image
+            src={images.pokeball}
+            alt="Pokeball"
+            width={150}
+            height={150}
+            priority
+            className={`cardPokemon__pokeLoad ${
+              JSON.parse(localStorage.getItem("viewPokemons"))
+                ? "--view-pokemons"
+                : ""
+            }`}
+          />
+        ) : (
+          <Image
+            src={
+              pokemon?.sprites?.other?.dream_world?.front_default
+                ? pokemon?.sprites?.other?.dream_world?.front_default
+                : incognito
+            }
+            alt={pokemon?.name}
+            title={pokemon?.name}
+            width={150}
+            height={150}
+            loading="lazy"
+            className={`cardPokemon__pokemon ${
+              JSON.parse(localStorage.getItem("viewPokemons"))
+                ? "--view-pokemons"
+                : ""
+            }`}
+          />
+        )}
       </Link>
     </div>
   );
