@@ -29,7 +29,7 @@ export const NavBar = () => {
   return (
     <nav className='navbar'>
 
-      <Link href='/'>
+      <Link href='/' title='Pokedex'>
         <Image src={images.pokeball} alt="Pokeball" width={40} height={40} />
         Pokedex
       </Link>

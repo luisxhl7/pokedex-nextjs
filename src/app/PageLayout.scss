@@ -15,7 +15,7 @@
     &::-webkit-scrollbar {
         width: 2px;
         @include FromMin($large) {
-            width: 12px;
+            width: 10px;
         }
     }
     &:hover{
@@ -24,8 +24,11 @@
             transition: background-color 10s linear;
         }
         &::-webkit-scrollbar-thumb:hover {
-            background-color: #b3b3b352;
+            background-color: #cfcece52;
+            transition-duration: .2s;
+            transition-timing-function: linear;
             transition: background-color 10s linear;
+            cursor: pointer;
         }
     }
 }

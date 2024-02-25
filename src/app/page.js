@@ -122,7 +122,7 @@ const PokemonsPage = ({params}) => {
             <button
               key={1 + idx}
               onClick={() => handleSelectPage(1 + idx)}
-              className={`${
+              className={`PokemonsPage__content-buttons__btn-page ${
                 parseInt(numberPage) === 1 + idx ? "--active" : ""
               }`}
             >

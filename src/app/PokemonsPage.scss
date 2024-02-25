@@ -49,15 +49,27 @@
             align-items: center;
             justify-content: center;
         }
-        & .--active{
-            background-color: #bd1212;
+        &__btn-page{
+            &:hover{
+                background-color: #c2c2c2;
+                transition-duration: .2s;
+                transition-timing-function: linear;
+            }
+            &.--active{
+                background-color: #bd1212;
+            }
         }
     }
 
     &__button-arrow{
         background-color: transparent;
-        color: #ffffff;
+        color: #c4c4c4;
         width: 30px !important;
+        transition-duration: .2s;
+        transition-timing-function: linear;
+        &:hover{
+            color: #ffffff;
+        }
     }
 
     &__not-result{
