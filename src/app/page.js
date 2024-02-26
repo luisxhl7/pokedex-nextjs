@@ -3,18 +3,19 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 import { ArrowBackIos, ArrowForwardIos, Search } from "@mui/icons-material";
 import { CardPokemon } from "@/components/molecules/card-pokemon";
 import { useForm, usePageNavigation } from "@/hooks";
 import images from "@/assets";
 import "./PokemonsPage.scss";
-import { useRouter } from "next/navigation";
 
 const formData = {
   pokemon: "",
 };
 
-const PokemonsPage = ({params}) => {
+const PokemonsPage = (props) => {
+  const { params, searchParams} = props
   const navigate = useRouter()
   const { pokemon, onInputChange } = useForm(formData);
   const [successSearch, setSuccessSearch] = useState(true);
@@ -22,14 +23,22 @@ const PokemonsPage = ({params}) => {
   const [pokemons, setPokemons] = useState();
   
   useEffect(() => {
-    getPokemons(params.page);
+    if (!searchParams.q) {
+      getPokemons(params.page);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [params.page]);
+
+  useEffect(() => {
+    if (searchParams.q) {
+      getPokemon(searchParams.q)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchParams.q]);
 
   const getPokemons = async (pageNumber) => {
     try {
       const page = (await pageNumber) ? pageNumber : 1;
-
       setSuccessSearch(true);
       const offset = (page - 1) * 100;
 
@@ -50,16 +59,22 @@ const PokemonsPage = ({params}) => {
     }
   };
 
+  const getPokemon = async (idSearch) => {
+    try {
+      const result = await axios.get(`https://pokeapi.co/api/v2/pokemon/${idSearch}`)
+      await setPokemons([result?.data])
+      setSuccessSearch(true)
+    } catch (error) {
+      setSuccessSearch(false)
+    }
+  };
+
   const handleSearchPokemon = async(event) => {
     event.preventDefault()
     const search = pokemon.replace(/\s/g, '')
-    
     try {
       if (search.length >= 1 ) {
-        navigate.push(`/?q=${ pokemon.toLowerCase().trim() }`)
-        const result = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemon}`)
-        setPokemons([result?.data])
-        setSuccessSearch(true)
+        navigate.push(`/search?q=${ pokemon.toLowerCase().trim() }`)
       }else{
         getPokemons()
       }
