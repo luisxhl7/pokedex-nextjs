@@ -4,7 +4,7 @@ export const pokemonsSlice = createSlice({
     name: 'pokemons',
     initialState: {
         pokemons: [],
-        isLoading: false,
+        isLoading: true,
         searchSuccess: true
     },
     reducers: {

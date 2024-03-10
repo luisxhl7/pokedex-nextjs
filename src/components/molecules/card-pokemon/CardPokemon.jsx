@@ -4,8 +4,11 @@ import Link from "next/link";
 import images from "@/assets";
 import Image from "next/image";
 import "./CardPokemon.scss";
+import { useSelector } from "react-redux";
 
 export const CardPokemon = ({ isLoading, name, id, image }) => {
+  const { theme } = useSelector( state => state.theme)
+
   return (
     <div className="cardPokemon">
       <Link href={`/pokemon/${name}`}>
@@ -22,7 +25,7 @@ export const CardPokemon = ({ isLoading, name, id, image }) => {
             height={150}
             priority
             className={`cardPokemon__pokeLoad ${
-              JSON.parse(localStorage.getItem("viewPokemons"))
+              theme
                 ? "--view-pokemons"
                 : ""
             }`}
@@ -36,7 +39,7 @@ export const CardPokemon = ({ isLoading, name, id, image }) => {
             height={150}
             loading="lazy"
             className={`cardPokemon__pokemon ${
-              JSON.parse(localStorage.getItem("viewPokemons"))
+              theme
                 ? "--view-pokemons"
                 : ""
             }`}

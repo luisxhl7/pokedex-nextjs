@@ -1,0 +1,36 @@
+.page-selector{
+    &__content-buttons{
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        flex-wrap: wrap;
+        padding: 20px 20px 20px;
+        & button{
+            width: 30px;
+            margin: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        &__btn-page{
+            &:hover{
+                background-color: #c2c2c2;
+                transition-duration: .2s;
+                transition-timing-function: linear;
+            }
+            &.--active{
+                background-color: #bd1212;
+            }
+        }
+    }
+    &__button-arrow{
+        background-color: transparent;
+        color: #c4c4c4;
+        width: 30px !important;
+        transition-duration: .2s;
+        transition-timing-function: linear;
+        &:hover{
+            color: #ffffff;
+        }
+    }
+}

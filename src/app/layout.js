@@ -1,5 +1,5 @@
 import { Providers } from "@/store/providers";
-import { NavBar } from "@/components/molecules/navBar";
+import { NavBar } from "@/components/organisms/navBar";
 import "./globals.scss";
 import "./PageLayout.scss";
 

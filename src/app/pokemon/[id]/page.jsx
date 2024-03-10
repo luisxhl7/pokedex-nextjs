@@ -8,41 +8,22 @@ import axios from 'axios'
 import { CardButtonPokemon } from '@/components/molecules/card-button-pokemon'
 import { InfoPokemon } from '@/components/molecules/info-pokemon'
 import images from '@/assets'
+import { useDispatch, useSelector } from 'react-redux'
+import { getPokemonById_thunks } from '@/store/thunks/pokemonById-thunks'
 import './Pokemon.scss'
-import Link from 'next/link'
+import { NotResult } from '@/components/molecules/not-result'
 
 const PokemonPage = ({params}) => {
   const navigate = useRouter()
-  const [pokemon, setPokemon] = useState()
-  const [successSearch, setSuccessSearch] = useState()
-  const [isLoad, setIsLoad] = useState(false)
-  const [optionsPokemons, setOptionsPokemons] = useState([])
-
-  const getPokemon = async() => {
-    try {
-      setIsLoad(true)
-      var miArray = [];
-      const result = await axios.get(`https://pokeapi.co/api/v2/pokemon/${params.id}`)
-      await setPokemon(result?.data)
-
-      for (let i = result.data.id; i < result.data.id + 4; i++) {
-        miArray.push((i + 1));
-      }
-
-      setOptionsPokemons(miArray)
-      setSuccessSearch(true)
-      setIsLoad(false)
-    } catch (error) {
-      setIsLoad(false)
-      setSuccessSearch(false)
-      console.log(error)
-    }
-  }
+  const dispatch = useDispatch()
+  const { pokemonsById, searchSuccess, isLoading } = useSelector( state => state.pokemonsById)
+  const [ optionsPokemons, setOptionsPokemons ] = useState([])
 
   const handleBackPokemon = async() => {
     try {
-      const backPokemon = pokemon?.id - 1
+      const backPokemon = pokemonsById[0]?.id - 1
       if (backPokemon >= 1) {
+        console.log(backPokemon);
         const result = await axios.get(`https://pokeapi.co/api/v2/pokemon/${backPokemon}`)
         await navigate.push(`/pokemon/${result?.data?.name}`)
         
@@ -53,7 +34,7 @@ const PokemonPage = ({params}) => {
   }
 
   const handleNextPokemon = async() => {
-    const backPokemon = pokemon?.id + 1
+    const backPokemon = pokemonsById[0]?.id + 1
     if (backPokemon < 10276) {
       const result = await axios.get(`https://pokeapi.co/api/v2/pokemon/${backPokemon}`)
       await navigate.push(`/pokemon/${result?.data?.name}`)
@@ -61,15 +42,21 @@ const PokemonPage = ({params}) => {
   }
 
   useEffect(() => {
-    getPokemon();
-
-   // eslint-disable-next-line react-hooks/exhaustive-deps
+    dispatch(getPokemonById_thunks(params.id))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [params.id])
-
-
+  
+  useEffect(() => {
+    let miArray = [];
+    for (let i = pokemonsById[0]?.id; i < pokemonsById[0]?.id + 4; i++) {
+      miArray.push((i + 1));
+    }
+    setOptionsPokemons(miArray)
+  }, [pokemonsById])
+  
   return (
     <section className='pokemon'>
-      { (successSearch) ?
+      { (searchSuccess) ?
         <>
           <div className='pokemon__content-info'>
             <button 
@@ -80,9 +67,9 @@ const PokemonPage = ({params}) => {
             </button>
             <div className='pokemon__card-info'>
               <div className='pokemon__card-info__section-1'>
-                {/* <h1 className='pokemon__card-info__title'>#{isLoad ? '???' : `${pokemon?.params.id} ${pokemon?.name}`} </h1> */}
+                <h1 className='pokemon__card-info__title'>#{isLoading ? '???' : `${pokemonsById[0]?.id} ${pokemonsById[0]?.name}`} </h1>
                 <figure>
-                  {isLoad ?
+                  {isLoading ?
                     <Image src={images.pokeball} 
                       alt="cargando"
                       width={50}
@@ -92,24 +79,22 @@ const PokemonPage = ({params}) => {
                     />
                     :
                     <Image src={
-                        pokemon?.sprites?.other?.dream_world?.front_default 
+                        pokemonsById[0]?.sprites?.other?.dream_world?.front_default 
                         ?
-                        pokemon?.sprites?.other?.dream_world?.front_default 
+                        pokemonsById[0]?.sprites?.other?.dream_world?.front_default 
                         :
                         images.incognitoSvg
                       }
                       width={50}
                       height={50}
-                      alt={`pokemon ${pokemon?.name}`}
-                      title={`pokemon ${pokemon?.name}`}
+                      alt={`pokemon ${pokemonsById[0]?.name}`}
+                      title={`pokemon ${pokemonsById[0]?.name}`}
                       className='pokemon__card-info__section-1__image'
                     />
                   }
                 </figure>
-                
               </div>
-              <InfoPokemon types={pokemon?.types} stats={pokemon?.stats} isLoad={isLoad}/>
-
+              <InfoPokemon types={pokemonsById[0]?.types} stats={pokemonsById[0]?.stats} isLoad={false}/>
             </div>
             <button 
               onClick={handleNextPokemon}
@@ -134,25 +119,16 @@ const PokemonPage = ({params}) => {
           </div>
 
           <div className='pokemon__content-buttons-pokemons'>
-            {optionsPokemons?.map( (item, idx) => (
+            {optionsPokemons.map( (item, idx) => (
               <CardButtonPokemon id={item} key={idx}/>
             ))}
           </div>
         </>
         :
-        isLoad ?
-        <> </>
-        :
-        <div className="pokemon__not-result">
-          <h1>No se encontraron resultados</h1>
-          <Link href='/' className='pokemon__link' title='Volver al inicio'>Volver al inicio</Link>
-          <Image
-            src={images.pikaTriste}
-            alt="Pokeball"
-            width='auto'
-            height='auto'
-          />
-        </div>
+        isLoading ?
+          <> </>
+          :
+        <NotResult/>
       }
       
     </section>

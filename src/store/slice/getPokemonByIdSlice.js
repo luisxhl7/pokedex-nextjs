@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit'
 export const pokemonByIdSlice = createSlice({
     name: 'pokemonsById',
     initialState: {
-        pokemons: [],
+        pokemonsById: [],
         isLoading: false,
         searchSuccess: true
     },
@@ -15,7 +15,7 @@ export const pokemonByIdSlice = createSlice({
             state.isLoading = false
         },
         set_pokemons: ( state, action ) => {
-            state.pokemons = action.payload.pokemons
+            state.pokemonsById = action.payload.pokemonsById
             state.isLoading = false
             state.searchSuccess = true
         }

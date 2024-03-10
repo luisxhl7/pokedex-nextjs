@@ -7,53 +7,61 @@ import { CardPokemon } from "@/components/molecules/card-pokemon";
 import { useForm, usePageNavigation } from "@/hooks";
 import { useDispatch, useSelector } from "react-redux";
 import { getPokemons_thunks } from "@/store/thunks/pokemons-thunks";
-import { getPokemonById_thunks } from "@/store/thunks/pokemonById-thunks";
 import Image from "next/image";
 import images from "@/assets";
 import "./PokemonsPage.scss";
+import { searchPokemons_thunks } from "@/store/thunks/searchPokemons-thunks";
+import { NotResult } from "@/components/molecules/not-result";
+import { PageSelector } from "@/components/molecules/page-selector/PageSelector";
 
 const formData = {
   pokemon: "",
 };
 
 const PokemonsPage = (props) => {
-  const navigate = useRouter()
-  const dispatch = useDispatch()
-  const { params, searchParams} = props
-  const { pokemons, searchSuccess, isLoading } = useSelector( state => state.pokemons)
-  const { numberPage, totalPage, setTotalPage, handleSelectPage, handleBackPage, handleNextPage } = usePageNavigation(params.page)
+  const navigate = useRouter();
+  const dispatch = useDispatch();
+  const { params, searchParams } = props;
+  const { pokemons, isLoading } = useSelector((state) => state.pokemons);
+  const {
+    numberPage,
+    totalPage,
+    setTotalPage,
+    handleSelectPage,
+    handleBackPage,
+    handleNextPage,
+  } = usePageNavigation(params.page);
   const { pokemon, onInputChange } = useForm(formData);
-  
+
+  console.log(isLoading);
   useEffect(() => {
     if (!searchParams.q) {
-      dispatch(getPokemons_thunks(params.page, setTotalPage))
+      dispatch(getPokemons_thunks(params.page, setTotalPage));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [params.page]);
 
   useEffect(() => {
     if (searchParams.q) {
-      dispatch(getPokemonById_thunks(searchParams.q))
+      dispatch(searchPokemons_thunks(searchParams.q));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchParams.q]);
 
-  const handleSearchPokemon = async(event) => {
-    event.preventDefault()
+  const handleSearchPokemon = async (event) => {
+    event.preventDefault();
     try {
-      const search = pokemon.replace(/\s/g, '')
-    
-      if (search.length >= 1 ) {
-        navigate.push(`/search?q=${ pokemon.toLowerCase().trim() }`)
-      }else{
-        console.log('mostrar de nuevo todos los pokemons');
-      }
-      
-    } catch (error) {
-      setSucce1ssSearch(false)
-    }
+      const search = pokemon.replace(/\s/g, "");
 
-  }
+      if (search.length >= 1) {
+        navigate.push(`/search?q=${pokemon.toLowerCase().trim()}`);
+      } else {
+        console.log("mostrar de nuevo todos los pokemons");
+      }
+    } catch (error) {
+      setSucce1ssSearch(false);
+    }
+  };
 
   return (
     <section className="PokemonsPage">
@@ -72,61 +80,35 @@ const PokemonsPage = (props) => {
       </form>
 
       <div className="PokemonsPage__content">
-        {searchSuccess ? (
-          pokemons?.map((item) => (
-            <CardPokemon
-              key={item?.id}
-              id={item?.id}
-              isLoading={isLoading}
-              name={item?.name}
-              image={item?.sprites?.other?.dream_world?.front_default}
-            />
-          ))
-        ) : (
-          <div className="PokemonsPage__not-result">
-            <h1>No se encontraron resultados</h1>
-            <Image
-              src={images.pikaTriste}
-              alt="Pokeball"
-              width='auto'
-              height='auto'
-            />
-          </div>
-        )}
+        {!isLoading ?
+          <>
+            {pokemons.length > 0 ? (
+              pokemons?.map((item) => (
+                <CardPokemon
+                  key={item?.id}
+                  id={item?.id}
+                  isLoading={isLoading}
+                  name={item?.name}
+                  image={item?.sprites?.other?.dream_world?.front_default}
+                />
+              ))
+            ) : (
+              <NotResult/>
+            )}
+          </>
+          :
+          <>Cargando</>
+        }
       </div>
 
-      {(pokemons?.length > 1) & (searchSuccess === true) ? (
-        <div className="PokemonsPage__content-buttons">
-          
-          <button
-            onClick={handleBackPage}
-            className="PokemonsPage__button-arrow"
-            title="Pagina anterior"
-          >
-            <ArrowBackIos />
-          </button>
-
-          {totalPage?.map((item) => (
-            <button
-              key={ item }
-              onClick={() => handleSelectPage( item )}
-              className={`PokemonsPage__content-buttons__btn-page ${
-                parseInt(numberPage) ===  item  ? "--active" : ""
-              }`}
-            >
-              {item}
-            </button>
-          ))}
-          
-          <button
-            title="Pagina siguiente"
-            onClick={handleNextPage}
-            className="PokemonsPage__button-arrow"
-          >
-            <ArrowForwardIos />
-          </button>
-
-        </div>
+      {(pokemons?.length > 1) & (!isLoading) ? (
+        <PageSelector
+          handleBackPage={handleBackPage}
+          handleNextPage={handleNextPage}
+          handleSelectPage={handleSelectPage}
+          totalPage={totalPage}
+          numberPage={numberPage}
+        />
       ) : (
         <></>
       )}

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { set_isLoading, set_pokemons, set_searchSuccess } from "../slice/getPokemonsSlice";
+import { set_isLoading, set_pokemons, set_searchSuccess } from "../slice/getPokemonByIdSlice";
 
 export const getPokemonById_thunks = (id) => {
     return async(dispatch, getState) => {
@@ -8,9 +8,7 @@ export const getPokemonById_thunks = (id) => {
     
             const result = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`)
 
-            console.log(result.data);
-            dispatch( set_pokemons({pokemons: [result.data]}) );
-
+            dispatch( set_pokemons({pokemonsById: [result.data]}) );
             
         } catch (error) {
             dispatch(set_searchSuccess())
