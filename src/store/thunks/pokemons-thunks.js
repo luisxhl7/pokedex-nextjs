@@ -7,11 +7,11 @@ export const getPokemons_thunks = (pageNumber, setTotalPage) => {
             dispatch(set_isLoading());
     
             const page = pageNumber ? pageNumber : 1;
-            const offset = (page - 1) * 50;
+            const offset = (page - 1) * 100;
             
-            const resp = await axios.get(`https://pokeapi.co/api/v2/pokemon?limit=50&offset=${offset}`);
+            const resp = await axios.get(`https://pokeapi.co/api/v2/pokemon?limit=100&offset=${offset}`);
     
-            // const totalPages = Math.round(resp?.data?.count / 50);
+            // const totalPages = Math.round(resp?.data?.count / 100);
             // setTotalPage(Array.from(Array.from({ length: totalPages }, (_, index) => index + 1)));
             setTotalPage(Array.from(Array.from({ length: 13 }, (_, index) => index + 1)));
                 

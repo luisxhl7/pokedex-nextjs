@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import './InfoPokemon.scss'
-import '../../../style/variables.scss'
 
 const Text = ({ className, url }) => {
     const [text, setText] = useState()
@@ -26,7 +25,6 @@ const Text = ({ className, url }) => {
 }
 
 export const InfoPokemon = ({types, stats, isLoad}) => {
-
     return (
         <div className='pokemon__card-info__section-2'>
             <h2 className='pokemon__card-info__title-type'>Tipo</h2>

@@ -2,13 +2,11 @@
 
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { ArrowBackIos, ArrowForwardIos, Search } from "@mui/icons-material";
+import { Search } from "@mui/icons-material";
 import { CardPokemon } from "@/components/molecules/card-pokemon";
 import { useForm, usePageNavigation } from "@/hooks";
 import { useDispatch, useSelector } from "react-redux";
 import { getPokemons_thunks } from "@/store/thunks/pokemons-thunks";
-import Image from "next/image";
-import images from "@/assets";
 import "./PokemonsPage.scss";
 import { searchPokemons_thunks } from "@/store/thunks/searchPokemons-thunks";
 import { NotResult } from "@/components/molecules/not-result";
@@ -33,7 +31,6 @@ const PokemonsPage = (props) => {
   } = usePageNavigation(params.page);
   const { pokemon, onInputChange } = useForm(formData);
 
-  console.log(isLoading);
   useEffect(() => {
     if (!searchParams.q) {
       dispatch(getPokemons_thunks(params.page, setTotalPage));
@@ -81,27 +78,24 @@ const PokemonsPage = (props) => {
 
       <div className="PokemonsPage__content">
         {!isLoading ?
-          <>
-            {pokemons.length > 0 ? (
-              pokemons?.map((item) => (
-                <CardPokemon
-                  key={item?.id}
-                  id={item?.id}
-                  isLoading={isLoading}
-                  name={item?.name}
-                  image={item?.sprites?.other?.dream_world?.front_default}
-                />
-              ))
-            ) : (
-              <NotResult/>
-            )}
-          </>
+          pokemons.length > 0 ?
+            pokemons?.map((item) => (
+              <CardPokemon
+                key={item?.id}
+                id={item?.id}
+                isLoading={isLoading}
+                name={item?.name}
+                image={item?.sprites?.other?.dream_world?.front_default}
+              />
+            ))
+            : 
+            <NotResult/>
           :
           <>Cargando</>
         }
       </div>
 
-      {(pokemons?.length > 1) & (!isLoading) ? (
+      {!isLoading & pokemons?.length > 1 ?
         <PageSelector
           handleBackPage={handleBackPage}
           handleNextPage={handleNextPage}
@@ -109,9 +103,9 @@ const PokemonsPage = (props) => {
           totalPage={totalPage}
           numberPage={numberPage}
         />
-      ) : (
+        :
         <></>
-      )}
+      }
     </section>
   );
 };

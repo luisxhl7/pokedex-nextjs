@@ -7,7 +7,7 @@ export const searchPokemons_thunks = (id) => {
             dispatch(set_isLoading());
             
             const result = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`)
-            console.log(result);
+
             dispatch(set_pokemons({pokemons: [result.data]}));
             
         } catch (error) {

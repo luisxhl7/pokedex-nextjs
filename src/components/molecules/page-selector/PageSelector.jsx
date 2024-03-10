@@ -1,5 +1,5 @@
-import { ArrowBackIos, ArrowForwardIos } from '@mui/icons-material'
 import React from 'react'
+import { ArrowBackIos, ArrowForwardIos } from '@mui/icons-material'
 import './page-selector.scss'
 
 export const PageSelector = ({handleBackPage, handleNextPage, handleSelectPage, totalPage, numberPage}) => {
