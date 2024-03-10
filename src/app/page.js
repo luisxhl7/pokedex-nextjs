@@ -1,12 +1,14 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import Image from "next/image";
-import axios from "axios";
+import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { ArrowBackIos, ArrowForwardIos, Search } from "@mui/icons-material";
 import { CardPokemon } from "@/components/molecules/card-pokemon";
 import { useForm, usePageNavigation } from "@/hooks";
+import { useDispatch, useSelector } from "react-redux";
+import { getPokemons_thunks } from "@/store/thunks/pokemons-thunks";
+import { getPokemonById_thunks } from "@/store/thunks/pokemonById-thunks";
+import Image from "next/image";
 import images from "@/assets";
 import "./PokemonsPage.scss";
 
@@ -15,72 +17,40 @@ const formData = {
 };
 
 const PokemonsPage = (props) => {
-  const { params, searchParams} = props
   const navigate = useRouter()
-  const { pokemon, onInputChange } = useForm(formData);
-  const [successSearch, setSuccessSearch] = useState(true);
+  const dispatch = useDispatch()
+  const { params, searchParams} = props
+  const { pokemons, searchSuccess, isLoading } = useSelector( state => state.pokemons)
   const { numberPage, totalPage, setTotalPage, handleSelectPage, handleBackPage, handleNextPage } = usePageNavigation(params.page)
-  const [pokemons, setPokemons] = useState();
+  const { pokemon, onInputChange } = useForm(formData);
   
   useEffect(() => {
     if (!searchParams.q) {
-      getPokemons(params.page);
+      dispatch(getPokemons_thunks(params.page, setTotalPage))
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [params.page]);
 
   useEffect(() => {
     if (searchParams.q) {
-      getPokemon(searchParams.q)
+      dispatch(getPokemonById_thunks(searchParams.q))
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchParams.q]);
 
-  const getPokemons = async (pageNumber) => {
-    try {
-      const page = (await pageNumber) ? pageNumber : 1;
-      setSuccessSearch(true);
-      const offset = (page - 1) * 100;
-
-      const result = await axios.get(
-        `https://pokeapi.co/api/v2/pokemon?limit=100&offset=${offset}`
-      );
-
-      const totalPages = Math.round(result?.data?.count / 100);
-      
-      //convierte el numero total de paginas en un array con con ese total de posiciones 
-      setTotalPage(
-        Array.from(Array.from({ length: totalPages }, (_, index) => index + 1))
-      );
-
-      setPokemons(result?.data?.results);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const getPokemon = async (idSearch) => {
-    try {
-      const result = await axios.get(`https://pokeapi.co/api/v2/pokemon/${idSearch}`)
-      await setPokemons([result?.data])
-      setSuccessSearch(true)
-    } catch (error) {
-      setSuccessSearch(false)
-    }
-  };
-
   const handleSearchPokemon = async(event) => {
     event.preventDefault()
-    const search = pokemon.replace(/\s/g, '')
     try {
+      const search = pokemon.replace(/\s/g, '')
+    
       if (search.length >= 1 ) {
         navigate.push(`/search?q=${ pokemon.toLowerCase().trim() }`)
       }else{
-        getPokemons()
+        console.log('mostrar de nuevo todos los pokemons');
       }
       
     } catch (error) {
-      setSuccessSearch(false)
+      setSucce1ssSearch(false)
     }
 
   }
@@ -102,13 +72,14 @@ const PokemonsPage = (props) => {
       </form>
 
       <div className="PokemonsPage__content">
-        {successSearch ? (
-          pokemons?.map((item, idx) => (
+        {searchSuccess ? (
+          pokemons?.map((item) => (
             <CardPokemon
-              key={idx}
+              key={item?.id}
               id={item?.id}
+              isLoading={isLoading}
               name={item?.name}
-              url={item?.url}
+              image={item?.sprites?.other?.dream_world?.front_default}
             />
           ))
         ) : (
@@ -124,33 +95,37 @@ const PokemonsPage = (props) => {
         )}
       </div>
 
-      {(pokemons?.length > 1) & (successSearch === true) ? (
+      {(pokemons?.length > 1) & (searchSuccess === true) ? (
         <div className="PokemonsPage__content-buttons">
+          
           <button
             onClick={handleBackPage}
             className="PokemonsPage__button-arrow"
-            title="Anterior"
+            title="Pagina anterior"
           >
             <ArrowBackIos />
           </button>
-          {totalPage?.map((item, idx) => (
+
+          {totalPage?.map((item) => (
             <button
-              key={1 + idx}
-              onClick={() => handleSelectPage(1 + idx)}
+              key={ item }
+              onClick={() => handleSelectPage( item )}
               className={`PokemonsPage__content-buttons__btn-page ${
-                parseInt(numberPage) === 1 + idx ? "--active" : ""
+                parseInt(numberPage) ===  item  ? "--active" : ""
               }`}
             >
-              {1 + idx}
+              {item}
             </button>
           ))}
+          
           <button
-            title="Siguiente"
+            title="Pagina siguiente"
             onClick={handleNextPage}
             className="PokemonsPage__button-arrow"
           >
             <ArrowForwardIos />
           </button>
+
         </div>
       ) : (
         <></>

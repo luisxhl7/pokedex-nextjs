@@ -1,3 +1,4 @@
+import { Providers } from "@/store/providers";
 import { NavBar } from "@/components/molecules/navBar";
 import "./globals.scss";
 import "./PageLayout.scss";
@@ -10,10 +11,12 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="es">
       <body>
-        <NavBar />
-        <main className="pageLayout">{children}</main>
+        <Providers>
+          <NavBar />
+          <main className="pageLayout">{children}</main>
+        </Providers>
       </body>
     </html>
   );
