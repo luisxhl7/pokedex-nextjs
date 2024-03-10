@@ -1,16 +1,17 @@
-import axios from "axios";
 import { set_selectTheme } from "../slice/themeSlice";
 
-export const theme_thunks = (id) => {
+export const theme_thunks = (change) => {
     return async(dispatch, getState) => {
         try {
-            const localState = !JSON.parse(localStorage.getItem('viewPokemons'))
-            const theme = localState ? localState : !getState().theme.theme
-            localStorage.setItem('viewPokemons', theme)
-            
-            dispatch(set_selectTheme({theme: theme}));
+            const localState = await JSON.parse(localStorage.getItem('viewPokemons'))
+
+            const theme = change ? !JSON.parse(localState) : JSON.parse(localState) || getState().theme.theme;
+
+            localStorage.setItem('viewPokemons', theme);
+
+            dispatch(set_selectTheme({ theme }));
         } catch (error) {
-            dispatch(set_searchSuccess())
+            console.log(error);
         }
     }
 }

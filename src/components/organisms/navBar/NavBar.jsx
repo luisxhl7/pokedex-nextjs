@@ -14,8 +14,13 @@ export const NavBar = () => {
   const dispatch = useDispatch();
 
   const handleViewPokemons = () => {
-    dispatch(theme_thunks());
+    dispatch(theme_thunks(true));
   };
+
+  useEffect(() => {
+    dispatch(theme_thunks(false));
+  }, [])
+  
 
   return (
     <nav className="navbar">
