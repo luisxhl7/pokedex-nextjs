@@ -1,4 +1,67 @@
 .pokemon__card-info{
+    &__ability{
+        width: 300px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin: 0px 0px 5px;
+        &__name{
+            text-transform: capitalize;
+            color: #ffffff;
+        }
+        &__stat{
+            color: #ffffff;
+            background-color: #0000fd98;
+            border-radius: 7px;
+            padding: 0px 5px 0px 0px;
+            position: relative;
+            animation: widthStats 0.5s linear;
+            @keyframes widthStats {
+                0% {
+                    width: 0px;
+                }
+                100% {
+                }
+            }
+            & p{
+                width: 27px;
+                position: absolute;
+                right: 5px;
+            }
+        }
+        &__content{
+            background-color: #7b7979cf;
+            height: 27px;
+            border-radius: 7px;
+            width: 50%;
+            display: flex;
+            justify-content: flex-end;
+            text-align: end;
+        }
+    }
+    &__title-type{
+        margin: 20px 0px 5px;
+        font-size: 20px;
+        color: #ffffff;
+        text-align: center;
+    }
+    &__type{
+        width: 300px;
+        display: flex;
+        justify-content: space-evenly;
+        &__text{
+            text-transform: capitalize;
+            color: #ffffff;
+        }
+    }
+    &__title-skills{
+        margin: 20px 0px 5px;
+        font-size: 20px;
+        color: #ffffff;
+        text-align: center;
+    }
     &__type__text{
         padding: 1px 5px;
         border-radius: 7px;
@@ -64,52 +127,6 @@
         }
         &.--color{
             background-color: #a38c21;
-        }
-
-
-        
-    }
-    &__ability{
-        width: 300px;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        margin: 0px 0px 5px;
-        &__name{
-            text-transform: capitalize;
-            color: #ffffff;
-        }
-        &__stat{
-            color: #ffffff;
-            background-color: #0000fd98;
-            border-radius: 7px;
-            padding: 0px 5px 0px 0px;
-            position: relative;
-            animation: widthStats 0.5s linear;
-            @keyframes widthStats {
-                0% {
-                    width: 0px;
-                }
-                100% {
-                }
-            }
-            & p{
-                width: 27px;
-                position: absolute;
-                right: 5px;
-            }
-        }
-        &__content{
-            background-color: #7b7979cf;
-            height: 27px;
-            border-radius: 7px;
-            width: 50%;
-            display: flex;
-            justify-content: flex-end;
-            text-align: end;
-            // background-color: white;
-        }
+        }   
     }
 }

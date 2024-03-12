@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect } from "react";
-import { useRouter } from "next/navigation";
 import { CardPokemon } from "@/components/molecules/card-pokemon";
 import { usePageNavigation } from "@/hooks";
 import { useDispatch, useSelector } from "react-redux";
@@ -13,7 +12,6 @@ import { SearchPokemons } from "@/components/molecules/search-pokemons";
 import "./PokemonsPage.scss";
 
 const PokemonsPage = (props) => {
-  const navigate = useRouter();
   const dispatch = useDispatch();
   const { params, searchParams } = props;
   const { pokemons, isLoading } = useSelector((state) => state.pokemons);
@@ -64,17 +62,15 @@ const PokemonsPage = (props) => {
         }
       </div>
 
-      {!isLoading & pokemons?.length > 1 ?
-        <PageSelector
-          handleBackPage={handleBackPage}
-          handleNextPage={handleNextPage}
-          handleSelectPage={handleSelectPage}
-          totalPage={totalPage}
-          numberPage={numberPage}
-        />
-        :
-        <></>
-      }
+      <PageSelector
+        handleBackPage={handleBackPage}
+        handleNextPage={handleNextPage}
+        handleSelectPage={handleSelectPage}
+        totalPage={totalPage}
+        numberPage={numberPage}
+        pokemons={pokemons}
+        isLoading={isLoading}
+      />
     </section>
   );
 };

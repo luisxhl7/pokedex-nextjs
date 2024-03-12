@@ -37,16 +37,13 @@ const SubirNumero = (numeroTotal) => {
                     return prevNumber; // Mantener el número actual si ya alcanzamos el número total
                 }
             });
-        }, 5); // Esperar 0.3 segundos antes de actualizar el número
+        }, 5);
 
-        return () => clearTimeout(timeoutId); // Limpiar el timeout al desmontar el componente
-    }, [currentNumber, numeroTotal]); // El efecto se ejecuta cada vez que currentNumber o numeroTotal cambia
+        return () => clearTimeout(timeoutId);
+    }, [currentNumber, numeroTotal]);
 
     return currentNumber;
 };
-
-
-
 
 
 export const InfoPokemon = ({types, stats, isLoad}) => {
