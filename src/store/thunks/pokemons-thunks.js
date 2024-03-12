@@ -14,7 +14,7 @@ export const getPokemons_thunks = (pageNumber, setTotalPage) => {
             
             const totalPages = Math.round(resp?.data?.count / 100);
             setTotalPage(Array.from(Array.from({ length: totalPages }, (_, index) => index + 1)));
-                
+            
             const promises = resp.data.results.map(async (item) => {
                 const rest = await axios.get(item.url);
                 return rest.data;

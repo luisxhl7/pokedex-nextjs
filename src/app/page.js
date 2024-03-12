@@ -2,19 +2,15 @@
 
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { Search } from "@mui/icons-material";
 import { CardPokemon } from "@/components/molecules/card-pokemon";
-import { useForm, usePageNavigation } from "@/hooks";
+import { usePageNavigation } from "@/hooks";
 import { useDispatch, useSelector } from "react-redux";
 import { getPokemons_thunks } from "@/store/thunks/pokemons-thunks";
 import { searchPokemons_thunks } from "@/store/thunks/searchPokemons-thunks";
 import { NotResult } from "@/components/molecules/not-result";
 import { PageSelector } from "@/components/molecules/page-selector/PageSelector";
+import { SearchPokemons } from "@/components/molecules/search-pokemons";
 import "./PokemonsPage.scss";
-
-const formData = {
-  pokemon: "",
-};
 
 const PokemonsPage = (props) => {
   const navigate = useRouter();
@@ -29,7 +25,6 @@ const PokemonsPage = (props) => {
     handleBackPage,
     handleNextPage,
   } = usePageNavigation(params.page);
-  const { pokemon, onInputChange } = useForm(formData);
 
   useEffect(() => {
     if (!searchParams.q) {
@@ -45,38 +40,12 @@ const PokemonsPage = (props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchParams.q]);
 
-  const handleSearchPokemon = async (event) => {
-    event.preventDefault();
-    try {
-      const search = pokemon.replace(/\s/g, "");
-
-      if (search.length >= 1) {
-        navigate.push(`/search?q=${pokemon.toLowerCase().trim()}`);
-      } else {
-        console.log("mostrar de nuevo todos los pokemons");
-      }
-    } catch (error) {
-      setSucce1ssSearch(false);
-    }
-  };
-
   return (
     <section className="PokemonsPage">
-      <form onSubmit={handleSearchPokemon} autoComplete="off">
-        <div className="PokemonsPage__content-search">
-          <Search className="PokemonsPage__content-search__icon-search" />
-          <input
-            type="text"
-            name="pokemon"
-            className="PokemonsPage__input"
-            onChange={onInputChange}
-            value={pokemon}
-            placeholder="Busca por número o nombre"
-          />
-        </div>
-      </form>
-
-      <div className="PokemonsPage__content">
+      
+      <SearchPokemons/>
+      
+      <div className="PokemonsPage__content-cards">
         {!isLoading ?
           pokemons.length > 0 ?
             pokemons?.map((item) => (
