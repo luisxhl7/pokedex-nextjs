@@ -1,7 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
-import { InfoPokemon } from '@/components/molecules/info-pokemon'
 import images from '@/assets'
+import { InfoStatsPokemon } from '@/components/molecules/info-stats-pokemon'
 import './cardInfoPokemon.scss'
 
 export const CardInfoPokemon = ({pokemon, isLoading}) => {
@@ -21,7 +21,7 @@ export const CardInfoPokemon = ({pokemon, isLoading}) => {
         />
       </div>
 
-      <InfoPokemon types={pokemon[0]?.types} stats={pokemon[0]?.stats} isLoad={isLoading}/>
+      <InfoStatsPokemon types={pokemon[0]?.types} stats={pokemon[0]?.stats} isLoad={isLoading}/>
     
     </div>
   )

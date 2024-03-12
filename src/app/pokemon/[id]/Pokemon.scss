@@ -16,50 +16,6 @@
         align-items: center;
         height: 100vh;
     }
-    &__content-info{
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-        @include FromMax(580px) {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            height: 100vh;
-            margin-top: 66vh;
-        }
-        @include FromMax($large) {
-            height: 100vh;
-            margin-top: 66vh;
-        }
-    }
-    &__button{
-        display: none;
-        @include FromMin(580px) {
-            display: block;
-            background-color: transparent;
-            color: #ffffff;
-            & svg{
-                font-size: 50px;
-            }
-        }
-    }
-    &__button-mobile{
-        display: block;
-        background-color: transparent;
-        color: #ffffff;
-        & svg{
-            font-size: 50px;
-        }
-        @include FromMin(580px) {
-            display: none;
-        }
-    }
-    &__content-buttons{
-        display: flex;
-        margin: 10px 0px;
-    }
     &__content-buttons-pokemons{
         padding: 0px 0px 50px;
         margin-top: 50px;
@@ -68,8 +24,5 @@
         flex-wrap: wrap;
         justify-content: center;
         align-items: center;
-    }
-    &__link{
-        color: #ffffff;
     }
 }
