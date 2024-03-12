@@ -24,7 +24,33 @@ const Text = ({ className, url }) => {
     )
 }
 
+const SubirNumero = (numeroTotal) => {
+    const [currentNumber, setCurrentNumber] = useState(0);
+
+    useEffect(() => {
+        const timeoutId = setTimeout(() => {
+            setCurrentNumber(prevNumber => {
+                const nextNumber = prevNumber + 1;
+                if (nextNumber <= numeroTotal) {
+                    return nextNumber;
+                } else {
+                    return prevNumber; // Mantener el número actual si ya alcanzamos el número total
+                }
+            });
+        }, 5); // Esperar 0.3 segundos antes de actualizar el número
+
+        return () => clearTimeout(timeoutId); // Limpiar el timeout al desmontar el componente
+    }, [currentNumber, numeroTotal]); // El efecto se ejecuta cada vez que currentNumber o numeroTotal cambia
+
+    return currentNumber;
+};
+
+
+
+
+
 export const InfoPokemon = ({types, stats, isLoad}) => {
+
     return (
         <div className='pokemon__card-info__section-2'>
             <h2 className='pokemon__card-info__title-type'>Tipo</h2>
@@ -63,28 +89,25 @@ export const InfoPokemon = ({types, stats, isLoad}) => {
                     </div>
                 ))
                 :
-                <>
-                    {
-                        stats?.map( (item, index) => (
-                            <div className='pokemon__card-info__ability' key={index}>
-                                <Text 
-                                    key={index} 
-                                    className='pokemon__card-info__ability__name' 
-                                    url={item?.stat?.url}
-                                />
-                                <div className='pokemon__card-info__ability__content'>
-                                    <div className='pokemon__card-info__ability__stat' style={{ width: `${item?.base_stat}px` }}>
-                                        <p>
-                                            {item?.base_stat ? item?.base_stat : '???'} 
-                                        </p>
+                stats?.map( (item, index) => (
+                    <div className='pokemon__card-info__ability' key={index}>
+                        <Text 
+                            key={index} 
+                            className='pokemon__card-info__ability__name' 
+                            url={item?.stat?.url}
+                        />
+                        <div className='pokemon__card-info__ability__content'>
+                            <div className='pokemon__card-info__ability__stat' style={{ width: `${item?.base_stat}px` }}>
+                                <p>
+                                    
+                                    {item?.base_stat ? SubirNumero(item?.base_stat) : '???'} 
+                                </p>
 
-                                    </div>
-
-                                </div>
                             </div>
-                        ))
-                    }
-                </>
+
+                        </div>
+                    </div>
+                ))
             }
 
         </div>

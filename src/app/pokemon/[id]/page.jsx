@@ -7,11 +7,11 @@ import { ArrowBackIosNew, ArrowForwardIos } from '@mui/icons-material'
 import axios from 'axios'
 import { CardButtonPokemon } from '@/components/molecules/card-button-pokemon'
 import { InfoPokemon } from '@/components/molecules/info-pokemon'
-import images from '@/assets'
 import { useDispatch, useSelector } from 'react-redux'
 import { getPokemonById_thunks } from '@/store/thunks/pokemonById-thunks'
-import './Pokemon.scss'
 import { NotResult } from '@/components/molecules/not-result'
+import images from '@/assets'
+import './Pokemon.scss'
 
 const PokemonPage = ({params}) => {
   const navigate = useRouter()

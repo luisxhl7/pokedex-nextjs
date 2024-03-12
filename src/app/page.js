@@ -7,10 +7,10 @@ import { CardPokemon } from "@/components/molecules/card-pokemon";
 import { useForm, usePageNavigation } from "@/hooks";
 import { useDispatch, useSelector } from "react-redux";
 import { getPokemons_thunks } from "@/store/thunks/pokemons-thunks";
-import "./PokemonsPage.scss";
 import { searchPokemons_thunks } from "@/store/thunks/searchPokemons-thunks";
 import { NotResult } from "@/components/molecules/not-result";
 import { PageSelector } from "@/components/molecules/page-selector/PageSelector";
+import "./PokemonsPage.scss";
 
 const formData = {
   pokemon: "",

@@ -83,11 +83,18 @@
         }
         &__stat{
             color: #ffffff;
-            background-color: rgba(0, 0, 253, 0.596);
+            background-color: #0000fd98;
             border-radius: 7px;
-            transition: width 0.8s ease;
             padding: 0px 5px 0px 0px;
             position: relative;
+            animation: widthStats 0.5s linear;
+            @keyframes widthStats {
+                0% {
+                    width: 0px;
+                }
+                100% {
+                }
+            }
             & p{
                 width: 27px;
                 position: absolute;
