@@ -10,6 +10,8 @@ import { NotResult } from "@/components/molecules/not-result";
 import { PageSelector } from "@/components/molecules/page-selector/PageSelector";
 import { SearchPokemons } from "@/components/molecules/search-pokemons";
 import "./PokemonsPage.scss";
+import Image from "next/image";
+import images from "@/assets";
 
 const PokemonsPage = (props) => {
   const dispatch = useDispatch();
@@ -53,12 +55,23 @@ const PokemonsPage = (props) => {
                 isLoading={isLoading}
                 name={item?.name}
                 image={item?.sprites?.other?.dream_world?.front_default}
+                gif={item?.sprites?.other?.showdown?.front_default}
+                urlType={item?.types?.[0]?.type?.url}
               />
             ))
             : 
             <NotResult/>
           :
-          <>Cargando</>
+          <>
+            <Image
+              src={images.pikachuRunnig}
+              alt='Cargando'
+              title='Cargando'
+              width={300}
+              height={300}
+              loading="lazy"
+            />
+          </>
         }
       </div>
 

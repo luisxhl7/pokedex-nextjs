@@ -9,7 +9,8 @@ $color-grey-buttons: #232323;
 $color-green: #1ed760;
 $color-text-grey: #b3b3b3;
 
-$gradiente1: linear-gradient(90deg, $color-black-2, $color-grey-hover, $color-black-2, $color-grey-hover);
+$card-height: 300px;
+$card-width: calc($card-height / 1.5);
 
 /* Breakpoints */
 $small: 440px;
