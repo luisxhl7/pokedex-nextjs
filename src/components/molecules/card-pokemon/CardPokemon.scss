@@ -212,7 +212,11 @@
         white-space: nowrap;
         text-align: center;
         text-transform: capitalize;
-    
+        transition: all 0.5s;
+        &.--what-poke{
+            font-size: 20px;
+            transition: all 0.5s;
+        }
         @include FromMax($large) {
             width: 140px;
         }
@@ -230,19 +234,86 @@
         z-index: -1;
         margin-bottom: 110px;
     }
-    & .--view-pokemons{
-        // background-color: red;
-        filter: brightness(100%) saturate(100%) contrast(100%) opacity(100%) grayscale(0%) sepia(0%) hue-rotate(0deg);
-        filter: brightness(0%) saturate(0%) invert(0%);
-        transition-duration: .2s;
-        transition-timing-function: linear;
+    &.--view-pokemons{
+        & img{
+            filter: brightness(100%) saturate(100%) contrast(100%) opacity(100%) grayscale(0%) sepia(0%) hue-rotate(0deg);
+            filter: brightness(0%) saturate(0%) invert(0%);
+            transition-duration: .2s;
+            transition-timing-function: linear;
+        }
+        & .cardPokemon__content{
+            background: rgba(0, 0, 0, 0.767);
+        }
         &:hover{
             filter: none;
             transition-duration: .2s;
             transition-timing-function: linear;
             & img{
                 filter: none;
-
+            }
+            & .cardPokemon__content{
+                &.--colorPlanta{
+                    background-color: #9bcc50;
+                }
+                &.--colorVeneno{
+                    background-color: #b97fc9;
+                }
+                &.--colorFuego{
+                    background-color: #fd7d24;
+                }
+                &.--colorVolador{
+                    background: linear-gradient(180deg, #3dc7ef 50%, #bdb9b8 50%);
+                }
+                &.--colorAgua{
+                    background-color: #4592c4;
+                }
+                &.--colorBicho{
+                    background-color: #729f3f;
+                }
+                &.--colorNormal{
+                    background-color: #a4acaf;
+                }
+                &.--colorEléctrico{
+                    background-color: #eed535;
+                }
+                &.--colorTierra{
+                    background:linear-gradient(180deg, rgb(247, 223, 63) 0%, rgb(171, 152, 66) 100%) 
+                    // background: linear-gradient(180deg, #f7de3f 50%, #ab9842 50%);
+                }
+                &.--colorHada{
+                    background-color: #fdb9e9;
+                }
+                &.--colorLucha{
+                    background-color: #d56723;
+                }
+                &.--colorPsíquico{
+                    background-color: #f366b9;
+                }
+                &.--colorRoca{
+                    background-color: #a38c21;
+                }
+                &.--colorAcero{
+                    background-color: #9eb7b8;
+                }
+                &.--colorHielo{
+                    background-color: #51c4e7;
+                }
+                &.--colorFantasma{
+                    background-color: #7b62a3;
+                }
+                &.--colorSiniestro{
+                    background-color: #707070;
+                }
+            
+                &.--colorDragón{
+                    background: linear-gradient(180deg, #53a4cf 50%, #f16e57 50%);
+                }
+                &.--color{
+                    background-color: #a38c21;
+                }
+                &.--color{
+                    background-color: #a38c21;
+                }   
             }
         }
 
@@ -267,6 +338,7 @@
             }
         }
         & .cardPokemon__image-pokemon{
+            transition: all 0.5s;
             display: none;
         }
         & .cardPokemon__content{
@@ -277,6 +349,7 @@
             transform: translate3d(0%, -50px, 100px);
         }
         & .cardPokemon__character{
+            transition: all 0.5s;
             opacity: 1;
             transform: translate3d(0%, -30%, 100px);
         }
