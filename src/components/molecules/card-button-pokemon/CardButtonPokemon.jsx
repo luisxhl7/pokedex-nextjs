@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import incognito from '../../../assets/incognito.svg'
 import Link from 'next/link'
 import Image from 'next/image'
+import incognito from '@/assets/incognito.svg'
 import './CardButtonPokemon.scss'
 
 export const CardButtonPokemon = ({id}) => {

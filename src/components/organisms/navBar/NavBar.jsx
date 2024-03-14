@@ -1,12 +1,12 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import Link from "next/link";
-import { Visibility, VisibilityOff } from "@mui/icons-material";
-import images from "@/assets";
-import Image from "next/image";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import Link from "next/link";
+import Image from "next/image";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { theme_thunks } from "@/store/thunks/theme-thunks";
+import images from "@/assets";
 import "./NavBar.scss";
 
 export const NavBar = () => {
@@ -19,6 +19,7 @@ export const NavBar = () => {
 
   useEffect(() => {
     dispatch(theme_thunks(false));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
   
 

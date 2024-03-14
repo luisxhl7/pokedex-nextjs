@@ -24,7 +24,7 @@ const Text = ({ className, url }) => {
     )
 }
 
-const SubirNumero = (numeroTotal) => {
+const UpNumbers = (numeroTotal) => {
     const [currentNumber, setCurrentNumber] = useState(0);
 
     useEffect(() => {
@@ -37,7 +37,7 @@ const SubirNumero = (numeroTotal) => {
                     return prevNumber; // Mantener el número actual si ya alcanzamos el número total
                 }
             });
-        }, 5);
+        }, 5);``
 
         return () => clearTimeout(timeoutId);
     }, [currentNumber, numeroTotal]);
@@ -97,7 +97,7 @@ export const InfoStatsPokemon = ({types, stats, isLoad}) => {
                             <div className='info-stats-pokemon__ability__stat' style={{ width: `${item?.base_stat}px` }}>
                                 <p>
                                     
-                                    {item?.base_stat ? SubirNumero(item?.base_stat) : '???'} 
+                                    {item?.base_stat ? UpNumbers(item?.base_stat) : '???'} 
                                 </p>
 
                             </div>

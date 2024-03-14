@@ -1,8 +1,8 @@
 import React from 'react'
 import axios from 'axios'
+import { useRouter } from 'next/navigation'
 import { ArrowBackIosNew, ArrowForwardIos } from '@mui/icons-material'
 import { CardInfoPokemon } from '@/components/molecules/card-info-pokemon'
-import { useRouter } from 'next/navigation'
 import './infoPokemon.scss'
 
 export const InfoPokemon = ({ pokemon, isLoading}) => {
@@ -28,7 +28,6 @@ export const InfoPokemon = ({ pokemon, isLoading}) => {
         const nextPokemonId = pokemon[0]?.id + 1;
         await getPokemonAndNavigate(nextPokemonId);
     };
-
 
     return (
         <div className='infoPokemon__content-info'>

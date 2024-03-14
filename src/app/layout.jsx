@@ -1,7 +1,7 @@
 import { Providers } from "@/store/providers";
 import { NavBar } from "@/components/organisms/navBar";
 import "./globals.scss";
-import "./PageLayout.scss";
+import "./index.scss";
 
 export const metadata = {
   title: "My Pokedex",

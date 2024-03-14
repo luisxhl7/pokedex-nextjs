@@ -9,9 +9,8 @@ import { searchPokemons_thunks } from "@/store/thunks/searchPokemons-thunks";
 import { NotResult } from "@/components/molecules/not-result";
 import { PageSelector } from "@/components/molecules/page-selector/PageSelector";
 import { SearchPokemons } from "@/components/molecules/search-pokemons";
-import "./PokemonsPage.scss";
-import Image from "next/image";
-import images from "@/assets";
+import { LoadingView } from "@/components/atoms/loading-view";
+import "./index.scss";
 
 const PokemonsPage = (props) => {
   const dispatch = useDispatch();
@@ -42,12 +41,11 @@ const PokemonsPage = (props) => {
 
   return (
     <section className="PokemonsPage">
-      
-      <SearchPokemons/>
-      
+      <SearchPokemons />
+
       <div className="PokemonsPage__content-cards">
-        {!isLoading ?
-          pokemons.length > 0 ?
+        {!isLoading ? (
+          pokemons.length > 0 ? (
             pokemons?.map((item) => (
               <CardPokemon
                 key={item?.id}
@@ -59,20 +57,12 @@ const PokemonsPage = (props) => {
                 urlType={item?.types?.[0]?.type?.url}
               />
             ))
-            : 
-            <NotResult/>
-          :
-          <>
-            <Image
-              src={images.pikachuRunnig}
-              alt='Cargando'
-              title='Cargando'
-              width={300}
-              height={300}
-              loading="lazy"
-            />
-          </>
-        }
+          ) : (
+            <NotResult />
+          )
+        ) : (
+          <LoadingView />
+        )}
       </div>
 
       <PageSelector

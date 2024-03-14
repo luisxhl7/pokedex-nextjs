@@ -1,0 +1,17 @@
+.loading-view{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    @keyframes move {
+        0% {
+            top: -10px;
+        } 
+        50% {
+            top: 0px;
+        }
+        100% {
+            top: -10px;
+        }
+      }
+}

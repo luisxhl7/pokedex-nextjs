@@ -1,8 +1,8 @@
 'use client'
 
 import React, { useEffect, useState } from 'react'
-import { CardButtonPokemon } from '@/components/molecules/card-button-pokemon'
 import { useDispatch, useSelector } from 'react-redux'
+import { CardButtonPokemon } from '@/components/molecules/card-button-pokemon'
 import { getPokemonById_thunks } from '@/store/thunks/pokemonById-thunks'
 import { NotResult } from '@/components/molecules/not-result'
 import { InfoPokemon } from '@/components/organisms/info-pokemon'
