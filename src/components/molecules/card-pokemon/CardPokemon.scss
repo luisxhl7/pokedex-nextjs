@@ -1,71 +1,23 @@
 @import '../../../style/mixins.scss';
 @import '../../../style/variables.scss';
 
-// .cardPokemon{
-//     width: 200px;
-//     height: 300px;
-//     margin: 5px;
-//     border-radius: 15px;
-//     padding: 0px 5px 15px;
-//     background-color: #5a5a5a;
-//     display: flex;
-//     flex-direction: column;
-//     align-items: center;
-//     justify-content: space-evenly;
-//     cursor: pointer;
-//     overflow: hidden;
-//     transition-duration: .2s;
-//     transition-timing-function: linear;
-
-//     @include FromMax($large) {
-//         width: 170px;
-//         height: 280px;
-//     }
-//     &:hover{
-//         background-color: #6e6e6e;
-//         transition-duration: .2s;
-//         transition-timing-function: linear;
-//         & img{
-//             filter: none;
-//             transition-duration: .2s;
-//             transition-timing-function: linear;
-//         }
-//     }
-//     &__pokeLoad{
-//         filter: brightness(50%) saturate(100%) contrast(100%) opacity(100%) grayscale(100%) sepia(0%) hue-rotate(0deg);
-//         color: red;
-//     }
-//     &__pokemon{
-//         filter: brightness(0%) saturate(100%) contrast(100%) opacity(100%) grayscale(100%) sepia(0%) hue-rotate(0deg);
-//         transition: filter 0.5s;
-//     }
-//     & .--view-pokemons{
-//         filter: brightness(100%) saturate(100%) contrast(100%) opacity(100%) grayscale(0%) sepia(0%) hue-rotate(0deg);
-//     }
-//     & h2{
-//         color: #fff;
-//         width: 170px;
-//         margin-bottom: 20px;
-//         overflow: hidden;
-//         text-overflow: ellipsis;
-//         white-space: nowrap;
-//         text-align: center;
-//         @include FromMax($large) {
-//             width: 140px;
-//         }
-//     }
-//     a{
-//         text-decoration: none;
-//         color: #ffffff;
-//         display: flex;
-//         flex-direction: column;
-//         align-items: center;
-//         justify-content: space-evenly;
-//     }
-// }
-
 .cardPokemon{
     margin: 15px;
+    opacity: 0.5;
+    animation: reveal linear both;
+    animation-timeline: view();
+    animation-range: entry 10% cover 20%;
+    @keyframes reveal {
+        from {
+            opacity: 0;
+            scale: 0.8;
+        }
+        to {
+            opacity: 1;
+            scale: 1;
+        }
+    }
+
     &__card {
         width: 200px;
         height: 300px;
@@ -215,7 +167,6 @@
         transition: all 0.5s;
         &.--what-poke{
             font-size: 20px;
-            transition: all 0.5s;
         }
         @include FromMax($large) {
             width: 140px;
@@ -246,8 +197,6 @@
         }
         &:hover{
             filter: none;
-            transition-duration: .2s;
-            transition-timing-function: linear;
             & img{
                 filter: none;
             }

@@ -6,6 +6,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { theme_thunks } from "@/store/thunks/theme-thunks";
+import { SearchPokemons } from "@/components/molecules/search-pokemons";
 import images from "@/assets";
 import "./NavBar.scss";
 
@@ -29,6 +30,8 @@ export const NavBar = () => {
         <Image src={images.pokeball} alt="Pokeball" width={40} height={40} />
         Pokedex
       </Link>
+
+      <SearchPokemons className={'--navBar-search'}/>
 
       <button
         type="button"

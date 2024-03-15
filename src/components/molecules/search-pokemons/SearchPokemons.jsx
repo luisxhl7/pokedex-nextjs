@@ -8,29 +8,28 @@ const formData = {
   pokemon: "",
 };
 
-export const SearchPokemons = () => {
+export const SearchPokemons = ({className}) => {
     const navigate = useRouter();
-    const { pokemon, onInputChange } = useForm(formData);
+    const { pokemon, onInputChange, onResetForm } = useForm(formData);
 
     const handleSearchPokemon = async (event) => {
         event.preventDefault();
         try {
-        const search = pokemon.replace(/\s/g, "");
+            const search = pokemon.replace(/\s/g, "");
 
-        if (search.length >= 1) {
-            navigate.push(`/search?q=${pokemon.toLowerCase().trim()}`);
-        } else {
-            console.log("mostrar de nuevo todos los pokemons");
-        }
+            if (search.length >= 1) {
+                navigate.push(`/search?q=${pokemon.toLowerCase().trim()}`);
+                onResetForm()
+            }
         } catch (error) {
-        setSucce1ssSearch(false);
+            console.log(error);
         }
     };
 
     return (
-        <form onSubmit={handleSearchPokemon} autoComplete="off" className="search">
+        <form onSubmit={handleSearchPokemon} autoComplete="off" className={`search ${className}`}>
             <div className="search__content-search">
-                <Search className="search__content-search__icon-search" />
+                <Search className='search__content-search__icon-search' />
                 <input
                     type="text"
                     name="pokemon"

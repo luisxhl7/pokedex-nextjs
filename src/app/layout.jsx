@@ -15,7 +15,9 @@ export default function RootLayout({ children }) {
       <body>
         <Providers>
           <NavBar />
-          <main className="pageLayout">{children}</main>
+          <main className="pageLayout" id="pageLayout">
+            {children}
+          </main>
         </Providers>
       </body>
     </html>

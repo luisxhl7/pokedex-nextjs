@@ -1,8 +1,11 @@
+@import '../../../style/mixins.scss';
+@import '../../../style/variables.scss';
+
 .navbar{
     background-color: #bd1212;
     width: 100%;
     height: 64px;
-    position: fixed;
+    position: sticky;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -32,4 +35,21 @@
         justify-content: center;
         margin: 0px 15px;
     }
+    & .--navBar-search {
+        margin: 0px;
+        opacity: 0;
+        @include FromMin($large) {
+            animation: animationNavbar linear both;
+            animation-timeline: scroll(root block);
+            animation-range: 0 200px;
+        }
+    }
+    
+    @keyframes animationNavbar {
+        to {
+            opacity: 1;
+        }
+    }
 }
+
+

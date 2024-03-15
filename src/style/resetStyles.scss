@@ -5,20 +5,16 @@
     padding: 0px;
 }
 
-body, h1, p {
-    margin: 0;
-    padding: 0;
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+
 a{
     text-decoration: none;
 }
 
 input{
     outline: none;
-}
-
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 *, *::before, *::after {

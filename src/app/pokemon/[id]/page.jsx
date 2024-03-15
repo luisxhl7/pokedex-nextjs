@@ -28,21 +28,18 @@ const PokemonPage = ({params}) => {
   
   return (
     <section className='pokemon'>
-      {!isLoading & searchSuccess ?
+      {searchSuccess ?
         <>
           <InfoPokemon pokemon={pokemonsById} isLoading={isLoading}/>
-
           <div className='pokemon__content-buttons-pokemons'>
             {optionsPokemons.map( (item, idx) => (
               <CardButtonPokemon id={item} key={idx}/>
-            ))}
+              ))}
           </div>
         </>
         :
-        !isLoading &&
-          <NotResult/>
+        <NotResult/>
       }
-      
     </section>
   )
 }
