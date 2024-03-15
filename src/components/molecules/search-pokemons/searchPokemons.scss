@@ -2,11 +2,19 @@
 @import '../../../style/variables.scss';
 
 .search{
+  @include FromMax($large) {
+    position: sticky;
+    top: 75px;
+    z-index: 1;
+  }
   &__content-search{
     padding: 10px 10px;
     border-radius: 15px;
     background-color: #ffffff;
     display: flex;
+    @include FromMax($large) {
+      box-shadow: 1px 1px 1px black;
+    }
     &__icon-search{
       color: #000000;
       margin: 0px 10px 0px 0px;

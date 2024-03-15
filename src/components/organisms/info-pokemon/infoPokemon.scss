@@ -13,11 +13,9 @@
             flex-direction: column;
             align-items: center;
             height: 100vh;
-            margin-top: 66vh;
         }
         @include FromMax($large) {
             height: 100vh;
-            margin-top: 66vh;
         }
     }
     &__button{

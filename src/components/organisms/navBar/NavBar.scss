@@ -38,10 +38,11 @@
     & .--navBar-search {
         margin: 0px;
         opacity: 0;
-        @include FromMin($large) {
-            animation: animationNavbar linear both;
-            animation-timeline: scroll(root block);
-            animation-range: 0 200px;
+        animation: animationNavbar linear both;
+        animation-timeline: scroll(root block);
+        animation-range: 0 200px;
+        @include FromMax($large) {
+            display: none;
         }
     }
     

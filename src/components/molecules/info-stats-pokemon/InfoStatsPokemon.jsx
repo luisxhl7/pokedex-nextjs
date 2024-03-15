@@ -47,7 +47,6 @@ const UpNumbers = (numeroTotal) => {
 
 
 export const InfoStatsPokemon = ({types, stats, isLoad}) => {
-
     return (
         <div className='info-stats-pokemon__section-2'>
             <h2 className='info-stats-pokemon__title-type'>Tipo</h2>
@@ -71,7 +70,7 @@ export const InfoStatsPokemon = ({types, stats, isLoad}) => {
             </div>
             <h2 className='info-stats-pokemon__title-skills'>Habilidades</h2>
             {isLoad ?
-                Array.from({ length: 5 }, (_, index) => (
+                Array.from({ length: 6 }, (_, index) => (
                     <div className='info-stats-pokemon__ability' key={index}>
                         <p className='info-stats-pokemon__ability__name'>
                             ???

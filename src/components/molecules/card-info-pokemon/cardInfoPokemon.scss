@@ -40,6 +40,7 @@
             &__image{
                 width: 250px;
                 height: 250px;
+                filter: drop-shadow(0 13px 10px #000000);
                 @include FromMin($large) {
                     width: 350px;
                     height: 350px;

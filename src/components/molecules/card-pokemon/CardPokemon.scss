@@ -84,6 +84,7 @@
         position: absolute;
         border-radius: 50%;
         bottom: 50px;
+        box-shadow: 1px 15px 30px #000000;
         &.--colorPlanta{
             background-color: #9bcc50;
         }
@@ -184,6 +185,7 @@
         position: absolute;
         z-index: -1;
         margin-bottom: 110px;
+        filter: drop-shadow(0 13px 10px #000000);
     }
     &.--view-pokemons{
         & img{

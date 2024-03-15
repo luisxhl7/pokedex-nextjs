@@ -27,7 +27,7 @@ export const SearchPokemons = ({className}) => {
     };
 
     return (
-        <form onSubmit={handleSearchPokemon} autoComplete="off" className={`search ${className}`}>
+        <form onSubmit={handleSearchPokemon} autoComplete="off" className={`search ${className ? className : ''}`}>
             <div className="search__content-search">
                 <Search className='search__content-search__icon-search' />
                 <input
