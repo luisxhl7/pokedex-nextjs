@@ -8,6 +8,8 @@
     padding: 10px;
     cursor: pointer;
     width: 170px;
+    transition: background-color 1S;
+    animation: animationOpacity 1s linear;
     @include FromMax($large) {
         width: 135px;
     }
@@ -36,6 +38,15 @@
         @include FromMax($large) {
             width: 110px;
             height: 110px;
+        }
+    }
+    @keyframes animationOpacity {
+        from {
+            opacity: 0.5;
+        }
+        
+        to {
+            opacity: 1;
         }
     }
 }

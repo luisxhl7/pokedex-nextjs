@@ -21,36 +21,29 @@ export const CardPokemon = ({ isLoading, name, id, image, gif, typeName }) => {
         className="cardPokemon__card"
         alt="Zelda Wind Waker card"
       >
-        <div className={`cardPokemon__wrapper --color${typeName}`}>
-          <div className={`cardPokemon__content --color${typeName}`}></div>
+        <div className={`cardPokemon__wrapper --color${typeName?.[0]?.type?.name}`}>
+          <div className={`cardPokemon__content --color${typeName?.[0]?.type?.name}`}></div>
+          <div className="cardPokemon__content-type">
+            {typeName.map( (item, idx) => (
+              <Image
+                key={idx}
+                src={typesPokemons[item?.type?.name] || images.pokeball}
+                alt={`icono tipo ${item?.type?.name}`}
+                width={20}
+                height={20}
+                title={item?.type?.name}
+              />
+            ))}
+          </div>
           <Image
-            src={typesPokemons[typeName] || images.pokeball}
-            alt="icono tipo de pokemon"
-            width={20}
-            height={20}
-            title={typeName}
-            className="cardPokemon__type-pokemon"
+            src={gif || images.incognitoSvg}
+            alt="gif pokemon"
+            width={100}
+            height={100}
+            loading="lazy"
+            className={`cardPokemon__image-pokemon ${gif ? '--gif' : '--image'}`}
           />
-          {gif ? (
-            <Image
-              src={gif}
-              alt="gif pokemon"
-              width={100}
-              height={100}
-              loading="lazy"
-              className={`cardPokemon__image-pokemon`}
-            />
-          ) : (
-            <Image
-              src={images.incognitoSvg}
-              alt={name}
-              title={name}
-              width={170}
-              height={170}
-              loading="lazy"
-              className={`cardPokemon__image-pokemon`}
-            />
-          )}
+
         </div>
 
         {!theme ? (

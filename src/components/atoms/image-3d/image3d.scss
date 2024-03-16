@@ -1,0 +1,21 @@
+@import '../../../style/mixins.scss';
+@import '../../../style/variables.scss';
+
+.container {
+    perspective: 1000px;
+}
+
+.image-3d {
+    transform-style: preserve-3d;
+    transition: transform 0.3s;
+}
+
+.image-3d img {
+    width: 250px;
+    height: 250px;
+    filter: drop-shadow(0 13px 10px #000000);
+    @include FromMin($large) {
+        width: 350px;
+        height: 350px;
+    }
+}

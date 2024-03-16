@@ -64,6 +64,7 @@
         flex-wrap: wrap;
         justify-content: center;
         align-items: center;
+        gap: 50px 25px;
         padding: 40px 0px 20px;
     }
 
@@ -81,6 +82,11 @@
             @include FromMin($large) {
                 width: 500px;
             }
+        }
+    }
+    & .--pokemon-page-search{
+        @include FromMin($large) {
+            display: none;
         }
     }
 }

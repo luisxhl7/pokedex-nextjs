@@ -43,6 +43,8 @@
                 width: 250px;
                 height: 250px;
                 filter: drop-shadow(0 13px 10px #000000);
+                animation: animationOpacity 0.5s linear;
+
                 @include FromMin($large) {
                     width: 350px;
                     height: 350px;
@@ -84,6 +86,7 @@
             text-overflow: ellipsis;
             white-space: nowrap;
             text-align: center;
+            animation: animationOpacity 0.5s linear;
         }
 
         &__content-arena{
@@ -94,10 +97,7 @@
             height: 200px;
             bottom: -100px;
             box-shadow: 1px 15px 30px #000000;
-            & img{
-                position: absolute;
-                top: 0px;
-            }
+            transition: background-color 1S;
             &.--colorgrass{
                 background-color: #9bcc50;
             }
@@ -155,6 +155,15 @@
             &.--colordragon{
                 background: linear-gradient(180deg, #53a4cf 50%, #f16e57 50%);
             }
+        }
+    }
+    @keyframes animationOpacity {
+        from {
+            opacity: 0.5;
+        }
+        
+        to {
+            opacity: 1;
         }
     }
 }

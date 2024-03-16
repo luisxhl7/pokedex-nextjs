@@ -42,7 +42,6 @@ export const InfoStatsPokemon = ({types, stats, isLoad}) => {
                                 width={20}
                                 height={20}
                                 title={item?.type?.name}
-                                className="cardPokemon__type-pokemon"
                             />
                            {item?.type?.name}
                         </p>

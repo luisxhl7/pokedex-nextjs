@@ -41,7 +41,7 @@ const PokemonsPage = (props) => {
 
   return (
     <section className="PokemonsPage">
-      <SearchPokemons />
+      <SearchPokemons className='--pokemon-page-search'/>
 
       <div className="PokemonsPage__content-cards">
         {!isLoading ? (
@@ -54,7 +54,7 @@ const PokemonsPage = (props) => {
                 name={item?.name}
                 image={item?.sprites?.other?.dream_world?.front_default}
                 gif={item?.sprites?.other?.showdown?.front_default}
-                typeName={item?.types?.[0]?.type?.name}
+                typeName={item?.types}
               />
             ))
           ) : (

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import axios from 'axios'
 import { useRouter } from 'next/navigation'
 import { ArrowBackIosNew, ArrowForwardIos } from '@mui/icons-material'
