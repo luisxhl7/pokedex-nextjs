@@ -1,29 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import Link from "next/link";
-import axios from "axios";
 import Image from "next/image";
 import images from "@/assets";
 import typesPokemons from "@/assets/typesPokemons";
 import "./CardPokemon.scss";
 
-export const CardPokemon = ({ isLoading, name, id, image, gif, urlType }) => {
+export const CardPokemon = ({ isLoading, name, id, image, gif, typeName }) => {
   const { theme } = useSelector((state) => state.theme);
-  const [typePokemon, setTypePokemon] = useState();
   const [isHovered, setIsHovered] = useState(false);
-
-  const getInfoUrl = async () => {
-    const resp = await axios.get(urlType);
-    setTypePokemon(resp?.data?.names[5]?.name);
-  };
-
-  useEffect(() => {
-    if (urlType) {
-      getInfoUrl();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
+  
   return (
     <div
       className={`cardPokemon ${!theme ? "--view-pokemons" : ""}`}
@@ -35,22 +21,23 @@ export const CardPokemon = ({ isLoading, name, id, image, gif, urlType }) => {
         className="cardPokemon__card"
         alt="Zelda Wind Waker card"
       >
-        <div className={`cardPokemon__wrapper --color${typePokemon}`}>
-          <div className={`cardPokemon__content --color${typePokemon}`}></div>
+        <div className={`cardPokemon__wrapper --color${typeName}`}>
+          <div className={`cardPokemon__content --color${typeName}`}></div>
           <Image
-            src={typesPokemons[typePokemon] || images.pokeball}
+            src={typesPokemons[typeName] || images.pokeball}
             alt="icono tipo de pokemon"
             width={20}
             height={20}
-            title={typePokemon}
+            title={typeName}
             className="cardPokemon__type-pokemon"
           />
           {gif ? (
             <Image
               src={gif}
               alt="gif pokemon"
-              width={10}
+              width={100}
               height={100}
+              loading="lazy"
               className={`cardPokemon__image-pokemon`}
             />
           ) : (

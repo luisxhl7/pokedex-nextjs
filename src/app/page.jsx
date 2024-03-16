@@ -54,7 +54,7 @@ const PokemonsPage = (props) => {
                 name={item?.name}
                 image={item?.sprites?.other?.dream_world?.front_default}
                 gif={item?.sprites?.other?.showdown?.front_default}
-                urlType={item?.types?.[0]?.type?.url}
+                typeName={item?.types?.[0]?.type?.name}
               />
             ))
           ) : (

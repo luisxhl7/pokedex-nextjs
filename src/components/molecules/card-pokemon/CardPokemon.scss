@@ -85,71 +85,67 @@
         border-radius: 50%;
         bottom: 50px;
         box-shadow: 1px 15px 30px #000000;
-        &.--colorPlanta{
+        &.--colorgrass{
             background-color: #9bcc50;
         }
-        &.--colorVeneno{
+        &.--colorpoison{
             background-color: #b97fc9;
         }
-        &.--colorFuego{
+        &.--colorfire{
             background-color: #fd7d24;
         }
         &.--colorVolador{
             background: linear-gradient(180deg, #3dc7ef 50%, #bdb9b8 50%);
         }
-        &.--colorAgua{
+        &.--colorwater{
             background-color: #4592c4;
         }
-        &.--colorBicho{
+        &.--colorbug{
             background-color: #729f3f;
         }
-        &.--colorNormal{
+        &.--colornormal{
             background-color: #a4acaf;
         }
-        &.--colorEléctrico{
+        &.--colorelectric{
             background-color: #eed535;
         }
-        &.--colorTierra{
-            background:linear-gradient(180deg, rgb(247, 223, 63) 0%, rgb(171, 152, 66) 100%) 
-            // background: linear-gradient(180deg, #f7de3f 50%, #ab9842 50%);
+        &.--colorground{
+            background: linear-gradient(180deg, #f7de3f 50%, #ab9842 50%);
         }
-        &.--colorHada{
+        &.--colorfairy{
             background-color: #fdb9e9;
         }
-        &.--colorLucha{
+        &.--colorflying{
+            background: -webkit-linear-gradient(270deg, #3dc7ef 50%, #bdb9b8 50%);
+        }
+        &.--colorfighting{
             background-color: #d56723;
         }
-        &.--colorPsíquico{
+        &.--colorpsychic{
             background-color: #f366b9;
         }
-        &.--colorRoca{
+        &.--colorrock{
             background-color: #a38c21;
         }
-        &.--colorAcero{
+        &.--colorsteel{
             background-color: #9eb7b8;
         }
-        &.--colorHielo{
+        &.--colorice{
             background-color: #51c4e7;
         }
-        &.--colorFantasma{
+        &.--colorghost{
             background-color: #7b62a3;
         }
-        &.--colorSiniestro{
+        &.--colordark{
             background-color: #707070;
         }
-    
-        &.--colorDragón{
+        &.--colordragon{
             background: linear-gradient(180deg, #53a4cf 50%, #f16e57 50%);
         }
-        &.--color{
-            background-color: #a38c21;
-        }
-        &.--color{
-            background-color: #a38c21;
-        }   
     }
     &__image-pokemon{
-        width: 50%;
+        width: auto;
+        height: auto;
         z-index: 1;
         transition-duration: .2s;
         transition-timing-function: linear;
@@ -166,6 +162,7 @@
         text-align: center;
         text-transform: capitalize;
         transition: all 0.5s;
+        text-shadow: 1px 1px 1px #000000;
         &.--what-poke{
             font-size: 20px;
         }
@@ -200,70 +197,65 @@
         &:hover{
             filter: none;
             & img{
-                filter: none;
+                filter: drop-shadow(0 13px 10px #000000);
             }
             & .cardPokemon__content{
-                &.--colorPlanta{
+                &.--colorgrass{
                     background-color: #9bcc50;
                 }
-                &.--colorVeneno{
+                &.--colorpoison{
                     background-color: #b97fc9;
                 }
-                &.--colorFuego{
+                &.--colorfire{
                     background-color: #fd7d24;
                 }
                 &.--colorVolador{
                     background: linear-gradient(180deg, #3dc7ef 50%, #bdb9b8 50%);
                 }
-                &.--colorAgua{
+                &.--colorwater{
                     background-color: #4592c4;
                 }
-                &.--colorBicho{
+                &.--colorbug{
                     background-color: #729f3f;
                 }
-                &.--colorNormal{
+                &.--colornormal{
                     background-color: #a4acaf;
                 }
-                &.--colorEléctrico{
+                &.--colorelectric{
                     background-color: #eed535;
                 }
-                &.--colorTierra{
-                    background:linear-gradient(180deg, rgb(247, 223, 63) 0%, rgb(171, 152, 66) 100%) 
-                    // background: linear-gradient(180deg, #f7de3f 50%, #ab9842 50%);
+                &.--colorground{
+                    background: linear-gradient(180deg, #f7de3f 50%, #ab9842 50%);
                 }
-                &.--colorHada{
+                &.--colorfairy{
                     background-color: #fdb9e9;
                 }
-                &.--colorLucha{
+                &.--colorflying{
+                    background: -webkit-linear-gradient(270deg, #3dc7ef 50%, #bdb9b8 50%);
+                }
+                &.--colorfighting{
                     background-color: #d56723;
                 }
-                &.--colorPsíquico{
+                &.--colorpsychic{
                     background-color: #f366b9;
                 }
-                &.--colorRoca{
+                &.--colorrock{
                     background-color: #a38c21;
                 }
-                &.--colorAcero{
+                &.--colorsteel{
                     background-color: #9eb7b8;
                 }
-                &.--colorHielo{
+                &.--colorice{
                     background-color: #51c4e7;
                 }
-                &.--colorFantasma{
+                &.--colorghost{
                     background-color: #7b62a3;
                 }
-                &.--colorSiniestro{
+                &.--colordark{
                     background-color: #707070;
                 }
-            
-                &.--colorDragón{
+                &.--colordragon{
                     background: linear-gradient(180deg, #53a4cf 50%, #f16e57 50%);
-                }
-                &.--color{
-                    background-color: #a38c21;
-                }
-                &.--color{
-                    background-color: #a38c21;
                 }   
             }
         }
@@ -289,6 +281,8 @@
             }
         }
         & .cardPokemon__image-pokemon{
+            width: auto;
+            height: auto;
             transition: all 0.5s;
             display: none;
         }

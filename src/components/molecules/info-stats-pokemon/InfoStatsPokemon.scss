@@ -63,70 +63,69 @@
         text-align: center;
     }
     &__type__text{
-        padding: 1px 5px;
+        padding: 3px 5px;
         border-radius: 7px;
-        &.--colorPlanta{
+        min-width: 80px;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        &.--colorgrass{
             background-color: #9bcc50;
         }
-        &.--colorVeneno{
+        &.--colorpoison{
             background-color: #b97fc9;
         }
-        &.--colorFuego{
+        &.--colorfire{
             background-color: #fd7d24;
         }
         &.--colorVolador{
             background: linear-gradient(180deg, #3dc7ef 50%, #bdb9b8 50%);
         }
-        &.--colorAgua{
+        &.--colorwater{
             background-color: #4592c4;
         }
-        &.--colorBicho{
+        &.--colorbug{
             background-color: #729f3f;
         }
-        &.--colorNormal{
+        &.--colornormal{
             background-color: #a4acaf;
         }
-        &.--colorEléctrico{
+        &.--colorelectric{
             background-color: #eed535;
         }
-        &.--colorTierra{
+        &.--colorground{
             background: linear-gradient(180deg, #f7de3f 50%, #ab9842 50%);
         }
-        &.--colorHada{
+        &.--colorfairy{
             background-color: #fdb9e9;
         }
-        &.--colorLucha{
-            background-color: #d56723;
+        &.--colorflying{
+            background: -webkit-linear-gradient(270deg, #3dc7ef 50%, #bdb9b8 50%);
         }
-        &.--colorPsíquico{
+        &.--colorpsychic{
             background-color: #f366b9;
         }
-        &.--colorRoca{
+        &.--colorfighting{
+            background-color: #d56723;
+        }
+        &.--colorrock{
             background-color: #a38c21;
         }
-        &.--colorAcero{
+        &.--colorsteel{
             background-color: #9eb7b8;
         }
-        &.--colorHielo{
+        &.--colorice{
             background-color: #51c4e7;
         }
-        &.--colorFantasma{
+        &.--colorghost{
             background-color: #7b62a3;
         }
-        &.--colorSiniestro{
+        &.--colordark{
             background-color: #707070;
         }
-
-        &.--colorDragón
-        
-        {
+        &.--colordragon{
             background: linear-gradient(180deg, #53a4cf 50%, #f16e57 50%);
-        }
-        &.--color{
-            background-color: #a38c21;
-        }
-        &.--color{
-            background-color: #a38c21;
-        }   
+        }  
     }
 }

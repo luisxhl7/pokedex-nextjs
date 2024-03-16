@@ -1,42 +1,41 @@
-import Bicho from "./bicho.svg";
-import Siniestro from "./dark.svg";
-import Dragón from "./dragon.svg";
-import Eléctrico  from "./electrico.svg";
-import Hada from "./fairy.svg";
-import Fantasma from "./fantasma.svg";
-import Volador from "./fliyin.svg";
-import Hielo from "./hielo.svg";
-import Acero from "./metal.svg";
-import Normal from "./normal.svg";
-import Lucha from "./pelea.svg";
-import Roca from "./roca.svg";
-import Psíquico from "./sitico.svg";
-import Tierra from "./tierra.svg";
-import Veneno from "./veneno.svg";
-import Agua from "./agua.svg";
-import Fuego  from "./fuego.svg";
-import Planta  from "./planta.svg";
-
+import bug from "./bug.svg";
+import dark from "./dark.svg";
+import dragon from "./dragon.svg";
+import electric  from "./electric.svg";
+import fairy from "./fairy.svg";
+import ghost from "./ghost.svg";
+import flying from "./flying.svg";
+import ice from "./ice.svg";
+import steel from "./steel.svg";
+import normal from "./normal.svg";
+import fighting from "./fighting.svg";
+import rock from "./rock.svg";
+import psychic from "./psychic.svg";
+import ground from "./ground.svg";
+import poison from "./poison.svg";
+import water from "./water.svg";
+import fire  from "./fire.svg";
+import grass  from "./grass.svg";
 
 const images = {
-    Planta,
-    Agua,
-    Fuego,
-    Bicho,
-    Normal,
-    Veneno,
-    Eléctrico,
-    Tierra,
-    Hada,
-    Lucha,
-    Psíquico,
-    Roca,
-    Fantasma,
-    Hielo,
-    Dragón,
-    Siniestro,
-    Acero,
-    Volador
+    grass,
+    water,
+    fire,
+    bug,
+    normal,
+    poison,
+    electric,
+    ground,
+    fairy,
+    fighting,
+    psychic,
+    rock,
+    ghost,
+    ice,
+    dragon,
+    dark,
+    steel,
+    flying
 }
 
 export default images

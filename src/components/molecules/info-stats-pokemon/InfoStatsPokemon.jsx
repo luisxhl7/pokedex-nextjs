@@ -1,28 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import axios from 'axios'
+import typesPokemons from "@/assets/typesPokemons";
+import Image from 'next/image';
 import './InfoStatsPokemon.scss'
-
-const Text = ({ className, url }) => {
-    const [text, setText] = useState()
-    
-    const getInfoUrl = async() => {
-        const resp = await axios.get(url)
-        setText(resp?.data?.names[5]?.name)
-    }
-
-    useEffect(() => {
-        if (url) {
-            getInfoUrl()
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
-    
-    return (
-        <p className={`${className} --color${text}`}>
-            {text ? text : '???'}
-        </p>
-    )
-}
 
 const UpNumbers = (numeroTotal) => {
     const [currentNumber, setCurrentNumber] = useState(0);
@@ -47,28 +26,31 @@ const UpNumbers = (numeroTotal) => {
 
 
 export const InfoStatsPokemon = ({types, stats, isLoad}) => {
+
     return (
         <div className='info-stats-pokemon__section-2'>
-            <h2 className='info-stats-pokemon__title-type'>Tipo</h2>
+            <h2 className='info-stats-pokemon__title-type'>Type</h2>
             <div className='info-stats-pokemon__type'>
-                {isLoad? 
-                    <>
-                        <Text 
-                            className='info-stats-pokemon__type__text' 
-                            url={false}
-                        />
-                    </> 
+                {isLoad ? 
+                    <p className='info-stats-pokemon__type__text'>????</p>
                     :
                     types?.map( (item, index) => (
-                        <Text 
-                            key={index} 
-                            className='info-stats-pokemon__type__text' 
-                            url={item?.type?.url}
-                        />
+                        <p key={index} className={`info-stats-pokemon__type__text --color${item?.type?.name}`}>
+                            <Image
+                                src={typesPokemons[item?.type?.name]}
+                                alt="icono tipo de pokemon"
+                                width={20}
+                                height={20}
+                                title={item?.type?.name}
+                                className="cardPokemon__type-pokemon"
+                            />
+                           {item?.type?.name}
+                        </p>
                     ))
                 }
             </div>
-            <h2 className='info-stats-pokemon__title-skills'>Habilidades</h2>
+
+            <h2 className='info-stats-pokemon__title-skills'>Skills</h2>
             {isLoad ?
                 Array.from({ length: 6 }, (_, index) => (
                     <div className='info-stats-pokemon__ability' key={index}>
@@ -87,20 +69,15 @@ export const InfoStatsPokemon = ({types, stats, isLoad}) => {
                 :
                 stats?.map( (item, index) => (
                     <div className='info-stats-pokemon__ability' key={index}>
-                        <Text 
-                            key={index} 
-                            className='info-stats-pokemon__ability__name' 
-                            url={item?.stat?.url}
-                        />
+                        <p className='info-stats-pokemon__ability__name' >
+                            {item?.stat?.name}
+                        </p>
                         <div className='info-stats-pokemon__ability__content'>
                             <div className='info-stats-pokemon__ability__stat' style={{ width: `${item?.base_stat}px` }}>
                                 <p>
-                                    
                                     {item?.base_stat ? UpNumbers(item?.base_stat) : '???'} 
                                 </p>
-
                             </div>
-
                         </div>
                     </div>
                 ))

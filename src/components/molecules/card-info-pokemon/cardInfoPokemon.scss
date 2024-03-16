@@ -34,6 +34,8 @@
             align-items: center;
             justify-content: space-around;
             border-radius: 15px;
+            position: relative;
+            overflow: hidden;
             @include FromMin($large) {
                 max-width: 350px;
             }
@@ -82,6 +84,77 @@
             text-overflow: ellipsis;
             white-space: nowrap;
             text-align: center;
+        }
+
+        &__content-arena{
+            position: absolute;
+            width: 200%;
+            border-radius: 50%;
+            background-color: red;
+            height: 200px;
+            bottom: -100px;
+            box-shadow: 1px 15px 30px #000000;
+            & img{
+                position: absolute;
+                top: 0px;
+            }
+            &.--colorgrass{
+                background-color: #9bcc50;
+            }
+            &.--colorpoison{
+                background-color: #b97fc9;
+            }
+            &.--colorfire{
+                background-color: #fd7d24;
+            }
+            &.--colorVolador{
+                background: linear-gradient(180deg, #3dc7ef 50%, #bdb9b8 50%);
+            }
+            &.--colorwater{
+                background-color: #4592c4;
+            }
+            &.--colorbug{
+                background-color: #729f3f;
+            }
+            &.--colornormal{
+                background-color: #a4acaf;
+            }
+            &.--colorelectric{
+                background-color: #eed535;
+            }
+            &.--colorground{
+                background: linear-gradient(180deg, #f7de3f 50%, #ab9842 50%);
+            }
+            &.--colorfairy{
+                background-color: #fdb9e9;
+            }
+            &.--colorflying{
+                background: -webkit-linear-gradient(270deg, #3dc7ef 50%, #bdb9b8 50%);
+            }
+            &.--colorfighting{
+                background-color: #d56723;
+            }
+            &.--colorpsychic{
+                background-color: #f366b9;
+            }
+            &.--colorrock{
+                background-color: #a38c21;
+            }
+            &.--colorsteel{
+                background-color: #9eb7b8;
+            }
+            &.--colorice{
+                background-color: #51c4e7;
+            }
+            &.--colorghost{
+                background-color: #7b62a3;
+            }
+            &.--colordark{
+                background-color: #707070;
+            }
+            &.--colordragon{
+                background: linear-gradient(180deg, #53a4cf 50%, #f16e57 50%);
+            }
         }
     }
 }
